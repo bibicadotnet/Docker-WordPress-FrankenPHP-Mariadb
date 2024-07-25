@@ -1,0 +1,27 @@
+services:
+  frankenphp:
+    #image: dunglas/frankenphp:php8.3-alpine
+    image: wpeverywhere/frankenwp:latest-php8.3    
+    container_name: frankenphp
+    restart: always    
+    env_file: ./config/.env
+    depends_on:
+      - db
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - ./caddy/caddy_data:/data
+      - ./caddy/caddy_config:/config
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./config/wp.ini:/usr/local/etc/php/conf.d/wp.ini
+      - ./wordpress/html:/var/www/html      
+
+  db:
+    image: mariadb:10.11.6-jammy
+    restart: always
+    volumes:
+      - ./wordpress/mysql:/var/lib/mysql    
+      - ./config/my.cnf:/etc/mysql/conf.d/bibica.cnf
+    env_file: ./config/.env
