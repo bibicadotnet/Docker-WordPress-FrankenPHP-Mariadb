@@ -20,7 +20,7 @@ services:
   db:
     image: mariadb:10.11.8-jammy
     restart: always
+    env_file: ./config/.env
     volumes:
       - ./wordpress/mysql:/var/lib/mysql
       - ./config/my.cnf:/etc/mysql/conf.d/custom.cnf
-    env_file: ./config/.env
