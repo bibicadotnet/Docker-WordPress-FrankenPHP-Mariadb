@@ -1,7 +1,7 @@
 services:
-  wordpress:
+  wp:
     image: wpeverywhere/frankenwp:latest-php8.3
-    container_name: wordpress
+    container_name: wp
     restart: always
     env_file: ./config/.env
     depends_on:
