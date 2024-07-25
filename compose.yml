@@ -1,6 +1,5 @@
 services:
   wordpress:
-    #image: bibica/frankenwp-php8.3:latest
     image: wpeverywhere/frankenwp:latest-php8.3
     container_name: wordpress
     restart: always
